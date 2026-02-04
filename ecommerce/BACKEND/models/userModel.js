@@ -1,3 +1,4 @@
+import { DataTypes } from "sequelize";
 const UserModel =(sequelize)=>{
 return sequelize.define('user',{
     name:{
@@ -6,12 +7,12 @@ return sequelize.define('user',{
 
     },
     email:{
-        type:DtaTypes.STRING,
+        type:DataTypes.STRING,
         allowNull:false,
         unique:true
     },
     password:{
-        type:DtaTypes.STRING,
+        type:DataTypes.STRING,
         allowNull:false,
         
     },
