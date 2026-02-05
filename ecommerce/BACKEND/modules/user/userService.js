@@ -1,0 +1,17 @@
+import { user } from "../../models";
+
+export const addUserService = async(data)=>{
+    try{
+        // two methoud create and build but in build we not to use save command as well
+        const result = await user.create(data);
+        return {
+            statusCode:201,
+            result
+        }
+    }catch(error){
+        return {
+            statusCode:400,
+            message:error.message
+        }
+    }
+}
