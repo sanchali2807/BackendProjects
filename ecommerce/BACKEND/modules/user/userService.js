@@ -1,4 +1,4 @@
-import { user } from "../../models";
+import { user } from "../../models/index.js";
 
 export const addUserService = async(data)=>{
     try{
