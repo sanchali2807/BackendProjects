@@ -15,3 +15,15 @@ export const addUserService = async(data)=>{
         }
     }
 }
+export const getUserService = async()=>{
+    try{
+const result = await user.findAll();
+// here attributes can be used for any specufic attribute
+        return {
+            statusCode:201,
+            result
+        }
+    }catch(error){
+        return {statusCode:400,message:error.message}
+    }
+}
