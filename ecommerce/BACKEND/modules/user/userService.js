@@ -18,6 +18,7 @@ export const addUserService = async(data)=>{
 export const getUserService = async()=>{
     try{
 const result = await user.findAll();
+// const result = await User.findByPk(2);
 // here attributes can be used for any specufic attribute
         return {
             statusCode:201,
