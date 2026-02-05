@@ -14,7 +14,7 @@ app.get("/",(req,res)=>{
 })
 
 app.listen(PORT,async()=>{
-    console.log(`App start : http://localhost:8080`);
+    console.log(`App start : http://localhost:${PORT}`);
     connectDB();
     await sequelize.sync();
 });

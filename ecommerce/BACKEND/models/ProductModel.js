@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 const ProductModel =(sequelize)=>{
-return sequelize.define('user',{
+return sequelize.define('product',{
     name:{
         type:DataTypes.STRING,
         allowNull:false,
