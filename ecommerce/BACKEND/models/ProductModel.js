@@ -7,15 +7,15 @@ return sequelize.define('product',{
 
     },
     decription:{
-        type:DtaTypes.STRING,
+        type:DataTypes.STRING,
         allowNull:false,
     },
     price:{
-        type:DataTypes.INTEGER,
+        type:DataTypes.DECIMAL(0,2),
         allowNull:false,
     },
     discountPrice:{
-        type:DataTypes.INTEGER,
+        type:DataTypes.DECIMAL(0.2),
         allowNull:false,
     },
     brand:{
