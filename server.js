@@ -20,5 +20,5 @@ app.use("/api",mainRoute);
 app.listen(PORT,async()=>{
     console.log(`App start : http://localhost:${PORT}`);
     connectDB();
-    await sequelize.sync(altertrue);
+    await sequelize.sync();
 });
