@@ -1,4 +1,4 @@
-const addressModel = (sequilze)=>{
+const addressModal = (sequilze)=>{
     return sequilze.define('address',{
         addressLine:Datatype.TEXT,
         city:Datatype.STRING,
@@ -7,4 +7,4 @@ const addressModel = (sequilze)=>{
         country:Datatype.STRING
     })
 }
-export default addressModel;
+export default addressModal;

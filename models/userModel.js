@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-const UserModel =(sequelize)=>{
+const UserModal =(sequelize)=>{
 return sequelize.define('user',{
     name:{
         type:DataTypes.STRING,
@@ -29,4 +29,4 @@ return sequelize.define('user',{
     }  
 })
 }
-export default UserModel;
+export default UserModal;

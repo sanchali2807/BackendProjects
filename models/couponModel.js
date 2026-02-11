@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 
-const couponModel = (sequelize) => {
+const couponModal = (sequelize) => {
     return sequelize.define('coupon', {
         code: { type: DataTypes.STRING, unique: true },
         discountType: { type: DataTypes.ENUM("PERCENT", "FIXED") },
@@ -10,4 +10,4 @@ const couponModel = (sequelize) => {
 
     })
 }
-export default couponModel;
+export default couponModal;

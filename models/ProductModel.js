@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-const ProductModel =(sequelize)=>{
+const ProductModal =(sequelize)=>{
 return sequelize.define('product',{
     name:{
         type:DataTypes.STRING,
@@ -37,4 +37,4 @@ return sequelize.define('product',{
     }  
 })
 }
-export default ProductModel;
+export default ProductModal;
