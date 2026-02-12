@@ -1,6 +1,6 @@
 // import { where } from "sequelize";
 import { user as User} from "../../models/index.js";
-
+import { jwt } from "jsonwebtoken";
 export const addUserService = async(data)=>{
     try{
         // two method create and build but in build we not to use save command as well
@@ -68,6 +68,62 @@ export const deleteUserService = async(id)=>{
     }catch(error){
         return{
             statusCode:400,
+            message:error.message
+        }
+    }
+}
+
+export const loginUserService=async(data)=>{
+    const {email,password}=data;
+    try {
+        if(!email || !password){
+            return {
+                statusCode:400,
+                message:"Feild cannot be empty"
+            }
+        }
+        const user=await User.findOne({
+            where:{
+                email:email
+            }
+        });
+        if(!user){
+            return {
+                statusCode:400,
+                message:"User not registered"
+            }
+        }
+        const isMatch=await bcrypt.compare(password,user.password);
+        if(!isMatch){
+            return {
+                statusCode:400,
+                message:"Invalid Credential"
+            }
+        }
+        if(!user.isActive){
+            return {
+                statusCode:400,
+                message:`${user.name} has been blocked please contact to Admin`
+            }
+        }
+        const id=user.id.toString();
+        const role=user.role;
+        const name=user.name;
+        const token=jwt.sign({id,role,email},SECERATE_KEY,{expiresIn:"1hr"})
+        return {
+            statusCode:200,
+            result:{
+                token,
+                id,
+                email,
+                role,
+                name
+            },
+            message:"Login Success"
+        }
+    } catch (error) {
+        return {
+            statusCode:500,
             message:error.message
         }
     }
