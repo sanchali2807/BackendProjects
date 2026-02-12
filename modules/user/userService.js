@@ -3,6 +3,9 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { GMAIL_ID, SECERATE_KEY } from "../../util/constant.js";
 import { sendMail } from "../../util/common.js";
+function generateOTP() {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
 export const addUserService=async(data)=>{
     let result;
     try {
@@ -36,11 +39,13 @@ export const addUserService=async(data)=>{
                 }
                 
             }
-        }else{
-            //email verification for user using OTP
-            result=await User.create(data);
-        }
-        
+        }const otp = generateOTP();
+        data.emailOtp = otp;              
+        data.isEmailVerified = false;     
+        data.otpExpiresAt = new Date(Date.now() + 10 * 60 * 1000);
+        result = await User.create(data);
+         // TODO: send OTP via email
+        console.log("OTP sent to user:", otp);
         return {statusCode:201,result}
     } catch (error) {
         return {statusCode:400,message:error.message}
