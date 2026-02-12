@@ -1,4 +1,4 @@
-import { addUserService, deleteUserService, getUserService, updateUserService } from "./userService.js"
+import { addUserService, deleteUserService, getUserService, updateUserService ,loginUserService} from "./userService.js"
 
 export const addUser = async(req,res)=>{
     // no need for try catch as it is written in service
@@ -21,4 +21,17 @@ export const deleteUser = async(req,res)=>{
     console.log(req);
     const result = await deleteUserService(id);
     return res.status(result.statusCode).json({result});
+}
+export const loginUser=async(req,resp)=>{
+    const result=await loginUserService(req.body);
+    if(result.result && result.result.token){
+        resp.cookie('token',result.result.token,{
+            httpOnly:true,
+            secure:false,
+            samesite:'strict'
+        })
+    }
+    return resp.status(result.statusCode).json({
+        result
+    }) 
 }
