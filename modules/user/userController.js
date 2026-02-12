@@ -35,3 +35,10 @@ export const loginUser=async(req,resp)=>{
         result
     }) 
 }
+export const logoutUser=async(req,resp)=>{
+    resp.clearCookie('token');
+    return resp.status(200).json({
+        statusCode:200,
+        message:"Logout Success"
+    })
+}
